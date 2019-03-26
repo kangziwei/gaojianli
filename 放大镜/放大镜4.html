@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			#box{
+				width: 360px;
+				height: 360px;
+				border: 1px solid goldenrod;
+				position: relative;
+				margin: 100px;
+			}
+			#big{
+				position:absolute;
+			}
+			#big img{
+				width: 360px;
+				height: 360px;
+			}
+			#saa{
+				width: 450px;
+				height: 450px;
+				position: absolute;
+				top: 0;
+				left: 500px;
+				display: none;
+				overflow: hidden;
+				border: 1px solid goldenrod;
+			}
+			#saa img{
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			#mask{
+				width: 100px;
+				height: 100px;
+				background-color: rgba(255,255,0,0.4);
+				position: absolute;
+				top: 0;
+				left: 0;
+				cursor: move;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="big">
+				<div id="mask"></div>
+				<img src="../img/kk0.jpg"/>
+			</div>
+			<div id="saa">
+				<img src="../img/kk9.jpg" id="img1"/>
+			</div>
+		</div>
+	</body>
+	<script>
+		var box=document.getElementById("box");
+		function $(id){
+			return document.getElementById(id);
+		}
+		var saa=$("saa");
+		var big=$("big");
+		var mask=$("mask");
+		var img1=document.getElementById("img1");
+		box.onmousemove=function(){
+			saa.style.display="block";
+			mask.style.display="block";
+		}
+		box.onmouseout=function(){
+			saa.style.display="none";
+			mask.style.display="none";
+		}
+		document.onmousemove=function(event){
+			event=event || window.event;
+			var valx=event.clientX-box.offsetLeft-mask.offsetWidth/2;
+			var valy=event.clientY-box.offsetTop-mask.offsetHeight/2;
+			
+			if(valx<=0){
+				valx=0;
+				}else if(valx>=box.offsetWidth-mask.offsetWidth){
+					valx=box.offsetWidth-mask.offsetWidth;
+				}
+				if(valy<=0){
+					valy=0;
+				}else if(valy>=box.offsetHeight-mask.offsetHeight){
+					valy=box.offsetHeight-mask.offsetHeight;
+				}
+			mask.style.left=valx+"px";
+			mask.style.top=valy+"px";
+			img1.style.left=-valx*(saa.offsetWidth/big.offsetWidth)+"px";
+			img1.style.top=-valy*(saa.offsetHeight/big.offsetHeight)+"px";
+		}
+	</script>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			body{
+				position: relative;
+			}
+			img{
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		</style>
+		<script>
+			window.onload=function(){
+				var img=document.getElementsByTagName("img")[0];
+				var targetx=0;
+				var leaderx=0;
+				var targety=0;
+				var leadery=0;
+				document.onclick=function(event){
+					event=event || window.event;
+					targetx=event.clientX-img.offsetWidth/2;
+					targety=event.clientY-img.offsetHeight/2;
+				}
+				setInterval(function(){
+					leaderx=leaderx+(targetx-leaderx)/10;
+					leadery=leadery+(targety-leadery)/10;
+					img.style.left=leaderx+"px";
+					img.style.top=leadery+"px";
+				},10);
+				//event  所有事件都有的
+				//onmouseout  onmouseout
+				//onfocus  onblur  没有event事件
+				//clientx/y    
+				/*small.onclick=function(event){
+					console.log(event);
+					event=event ||window.event;
+					//screen  据屏幕(根据屏幕的大小)的宽高
+					console.log("event.sceenx="+event.screenX);
+					console.log("event.sceeny="+event.screenY);
+					//clientY   据屏幕左/上的距离
+					console.log("event.clientX="+event.clientX);
+					console.log("event.clientY="+event.clientY);
+					//offset    自身到左/上的距离
+					console.log("event.offsetX="+event.offsetX);
+					console.log("event.offsetY="+event.offsetY);
+					//page    据屏幕到左/上的距离
+					console.log("event.pageX="+event.pageX);
+					console.log("event.pageY="+event.pageY);
+					//x,y    据屏幕到左/上的距离
+					console.log("event.X="+event.x);
+					console.log("event.Y="+event.y);
+				}*/
+			}
+		</script>
+	</head>
+	<body>
+		<img src="img/img.jpg" />
+	</body>
+</html>

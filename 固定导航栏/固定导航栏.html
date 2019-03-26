@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			#box{
+				position: relative;
+			}
+			img{
+				vertical-align: top;
+			}
+			.vv{
+				position: fixed;
+				top: 0;
+				left: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="top">
+				<img src="../img/01.jpg" />
+			</div>
+			<div id="nav1">
+				<img src="../img/ll.png" />
+			</div>
+			<div id="bu">
+				<img src="../img/kkk.png"> 
+			</div>
+		</div>
+	</body>
+	<script>
+		var nav1=document.getElementById("nav1");
+		var y=nav1.offsetTop;
+		document.onscroll=function(){
+			//document.documentElement.scrollTop;
+			//document.body.scrollTop
+			var scroll=window.pageYOffset;
+			if(scroll>=y){
+				nav1.className="vv";
+			}else{
+				nav1.className="";
+			}
+		}
+	</script>
+</html>

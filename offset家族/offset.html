@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			#box{
+				width:200px ;
+				height:200px ;
+				border: 1px solid red;
+				padding: 20px;
+				margin: 10px;
+				background-color: palevioletred;
+			}
+		</style>
+		<script>
+			window.onload=function(){
+				var box=document.getElementById("box");
+				//offsetWidth   内容+左右padding+左右boder 读取的值不带单位px   
+				//在任何地方都可以读取
+				//offsethight   内容+上下padding+上下boder 读取的值不带单位px
+				console.log("box.offsetWidth="+box.offsetWidth);
+				console.log("box.offsethight="+box.offsetHeight);
+				box.offsetWidth=400+"px";
+				box.offsetHeight=400+"px";
+				console.log("box.offsetWidth="+box.offsetWidth);
+				console.log("box.offsethight="+box.offsetHeight);
+				//style  内容的宽高  读取的带单位   只能在内联样式中可以用
+				//可以动态的改值
+				console.log("box.style.width="+box.style.width);
+				console.log("box.offsethight="+box.style.height);
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box" style="width:100px;height: 100px;border: 1px solid palegreen;padding: 20px;margin: 10px;">
+			
+		</div>
+	</body>
+</html>

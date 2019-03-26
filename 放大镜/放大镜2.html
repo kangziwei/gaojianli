@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			
+			#box{
+				width: 350px;
+				height: 350px;
+				border: 1px solid hotpink;
+				position: relative;
+				margin: 100px;
+			}
+			#samll{
+				position: relative;
+			}
+			#mask{
+				width: 100px;
+				height: 100px;
+				background: rgba(250,250,0,0.4);
+				position: absolute;
+				/*top: 0;
+				left: 0;*/
+				cursor: move;
+				display: none;
+			}
+			#big{
+				width: 450px;
+				height: 450px;
+				border: 1px solid sandybrown;
+				position: absolute;
+				top: 0;
+				left: 460px;
+				overflow: hidden;
+				display: none;
+			}
+			#big img{
+				
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			
+			<div id="samll">
+				<div id="mask"></div>
+				<img src="../img/kk0.jpg">
+			</div>
+			
+			<div id="big">
+				<img src="../img/kk9.jpg">
+			</div>
+		</div>
+	</body>
+	<script>
+		var box=document.getElementById("box");
+		var samll=box.children[0];
+		var big=box.children[1];
+		var mask=samll.children[0];
+		var img1=big.children[0];
+		box.onmousemove=function(){
+			mask.style.display="block";
+			big.style.display="block";
+		}
+		box.onmouseout=function(){
+			mask.style.display="none";
+			big.style.display="none";
+		}
+		var x=0;
+		var y=0;
+		document.onmousemove=function(event){
+			event=event ||window.event;
+			x=event.clientX-box.offsetLeft-mask.offsetWidth/2;
+			y=event.clientY-box.offsetTop-mask.offsetHeight/2;
+			if(x<=0){
+				x=0;
+			}else if(x>=samll.offsetWidth-mask.offsetWidth){
+				x=samll.offsetWidth-mask.offsetWidth;
+			}
+			if(y<=0){
+				y=0;
+			}else if(y>=samll.offsetHeight-mask.offsetHeight){
+				y=samll.offsetHeight-mask.offsetHeight;
+			}
+			mask.style.left=x+"px";
+			mask.style.top=y+"px";
+			img1.style.left=-x*(big.offsetWidth/samll.offsetWidth)+"px";
+			img1.style.top=-y*(big.offsetHeight/samll.offsetHeight)+"px";
+			
+		}
+		
+	</script>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			#box{
+				width: 400px;
+				height: 10px;
+				background-color: gray;
+				margin: 100px auto;
+				position: relative;
+			}
+			#bar{
+				width: 10px;
+				height: 20px;
+				position: absolute;
+				top: -5px;
+				left: 0;
+				background-color: red;
+				cursor: pointer;
+			}
+			#mask{
+				height: 10px;
+				background-color:red;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		</style>
+		
+	</head>
+	<body>
+		<div id="box">
+			<div id="bar"></div>
+			<div id="mask"></div>
+		</div>
+		<p id="pp"></p>
+	</body>
+	<script>
+			var box=document.getElementById("box");
+//			var bar=box.children[0];
+//			var mask=box.children[1];
+			var mask=document.getElementById("mask")
+			var bar=document.getElementById("bar");
+			var p=document.getElementById("pp");
+			//鼠标放下事件
+			bar.onmousedown=function(event){
+				event=event || window.event;
+				//var val=event.clientX-this.offsetLeft;
+				/*console.log(this.offsetLeft);
+				console.log("leftvalue"+leftvalue);*/
+				document.onmousemove=function(event){
+					event=event || window.event;
+					var val=event.clientX-box.offsetLeft-bar.offsetWidth/2;
+					var ralvalue=box.offsetWidth-bar.offsetWidth;
+					if(val<0){
+						val=0;
+					}else if(val>ralvalue){
+						val=ralvalue;
+					}
+					//console.log("leftvalue"+val);
+					bar.style.left=val+"px";
+					mask.style.width=val+"px";
+					//tofixed() 保留小数位数
+					
+					pp.innerHTML="你已经走了："+(val/ralvalue*100).toFixed(2)+"%";
+					//去掉在移动过程选中的字体
+					window.getSelection?window.getSelection().removeAllRanges():document.selection.empty();
+				}
+				}
+			//当鼠标弹起时，移动事件为空
+					document.onmouseup=function(){
+					document.onmousemove=null;
+		}
+			
+		</script>
+</html>

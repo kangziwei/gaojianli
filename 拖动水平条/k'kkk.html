@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			nav{
+				width: 100%;
+				height: 50px;
+				line-height: 50px;
+				padding-left: 30px;
+				color: white;
+				font-size: 20px;
+				font-weight: bold;
+				background-color: palevioletred;
+			}
+			nav a{
+				color: white;
+				text-decoration: none;
+			}
+			#box{
+				width: 400px;
+				height: 400px;
+				background-color:wheat;
+				box-shadow: 2px 2px 2px 2px #666;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-left: -205px;
+				margin-top: -205px;
+			}
+			#box  #darp{
+				width: 100%;
+				height: 50px;
+				cursor: pointer;
+				background-color:gray;
+				font-size: 20px;
+				line-height: 50px;
+			}
+			#darp span{
+				cursor: pointer;
+				float: right;
+			}
+		</style>
+	</head>
+	<body>
+		<nav>
+			<a href="javascript:;">注册信息</a>
+		</nav>
+		<div id="box">
+			<div id="darp">
+				注册信息可以拖拽
+				<span>关闭</span>
+			</div>
+		</div>
+	</body>
+	<script>
+		var box=document.getElementById("box");
+		var drap=box.children[0];
+		drap.onmousedown=function(event){
+			event=event || window.event;
+			//记录盒子当前的位置
+			var x=event.clientX-box.offsetLeft;
+			var y=event.clientY-box.offsetTop;
+			document.onmousemove=function(event){
+				event=event || window.event;
+				box.style.left=(event.clientX-x+205)+"px";
+				box.style.top=(event.clientY-y+205)+"px";
+			}
+		}
+		document.onmouseup=function(){
+			document.onmousemove=null;
+		}
+		window.getSelection?window.getSelection().removeAllRanges():document.selection.empty();
+	</script>
+</html>	

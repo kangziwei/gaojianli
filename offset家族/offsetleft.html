@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			#box{
+				width:400px ;
+				height:400px ;
+				border: 1px solid red;
+				padding: 20px;
+				margin: 10px;
+				background-color: palevioletred;
+				position: relative;
+			}
+			#small{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				border: 2px solid gold;
+			}
+		</style>
+		<script>
+			window.onload=function(){
+				var box=document.getElementById("box");
+				var small=document.getElementById("small");
+				//取值：该元素距边框（不包括边框）离他定位的父元素
+				//的左/上边框之间的值（不包括边框）
+				//如果没有 定位的父级元素就向上一直找
+				//如果都没有找到就是离body之间的距离
+				//任何元素都有
+				console.log(small.offsetTop);
+				console.log(small.offsetLeft);
+				//obj.style.left  left right  bottom top z-index
+				//只能得到行内元素
+				//带单位
+				obj.style.left="3px";
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box" >
+			<div id="small"></div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+				list-style: none;
+			}
+			body{
+				background-color: black;
+			}
+			#box{
+				position: relative;
+				height: 42px;
+				width: 1000px;
+				background-color: white;
+				margin: 100px auto;
+			}
+			#box ul{
+				width: auto;
+				height: 42px;
+				width: 1000px;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			#box li{
+				width: 83px;
+				height: 42px;
+				float:left ;
+				line-height: 42px;
+				text-align: center;
+				cursor: pointer;
+			}
+			#box #span1{
+				width: 83px;
+				height: 42px;
+				background: white url(../img/gg.jpg) no-repeat center;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		</style>
+		<script>
+			window.onload=function(){
+				var lis=document.getElementsByTagName("li");
+				var span1=document.getElementById("span1");
+				var curr=0;
+				var laeder=0;
+				var target=0;
+				for(var i=0;i<lis.length;i++){
+					lis[i].onmousemove=function(){
+						target=this.offsetLeft;
+					}
+					lis[i].onclick=function(){
+							curr=target;
+					}
+					lis[i].onmouseout=function(){
+							tagret=curr;
+					}
+					
+					setInterval(function(){
+						laeder=laeder+(target-laeder)/10;
+						span1.style.left=laeder+"px";
+						},10);
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<span id="span1"></span>
+			<ul>
+				<li>新闻首页</li>
+				<li>新闻首页</li>
+				<li>新闻首页</li>
+				<li>新闻首页</li>
+				<li>新闻首页</li>
+				<li>新闻首页</li>
+				<li>新闻首页</li>
+				<li>新闻首页</li>
+				
+			</ul>
+		</div>
+	</body>
+</html>

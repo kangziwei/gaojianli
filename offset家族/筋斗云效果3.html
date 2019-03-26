@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			body{
+				background-color: black;
+			}
+			#box{
+				width: 1000px;
+				height: 42px;
+				margin: 100px auto;
+				position: relative;
+				background:white url(../img/rss.png) no-repeat center right;
+			}
+			#box ul{
+				list-style: none;
+				position:absolute;
+				top: 0;
+				left: 0;
+			}
+			#box ul li{
+				float: left;
+				width: 83px;
+				height: 42px;
+				line-height: 42px;
+				text-align: center;
+			}
+			#box #yun{
+				background:url(../img/cloud.gif) no-repeat center center; 
+				position:absolute;
+				top: 0;
+				left: 0;
+				width: 83px;
+				height: 42px;
+			}
+			#box ul li.current{
+				background: url(../img/cloud.gif) no-repeat;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<span id="yun"></span>
+			<ul>
+				<li>首页</li>
+				<li>首页</li>
+				<li>首页</li>
+				<li>首页</li>
+				<li>首页</li>
+				<li>首页</li>
+				<li>首页</li>
+				<li>首页</li>
+				
+			</ul>
+		</div>
+	</body>
+	<script>
+		var lis=document.getElementsByTagName("li");
+		var yun=document.getElementById("yun");
+		var current=0;
+		for(var i=0;i<lis.length;i++){
+			lis[i].onmouseover=function(){
+				target=this.offsetLeft;
+				console.log(target);
+			}
+			lis[i].onclick=function(){
+				current=target;
+			}
+			lis[i].onmouseout=function(){
+				target=current;
+			}
+		}
+		var target=0;
+		var leader=0;
+		setInterval(function(){
+			leader=leader+(target-leader)/10;
+			yun.style.left=leader+"px";
+		},10);
+	</script>
+</html>

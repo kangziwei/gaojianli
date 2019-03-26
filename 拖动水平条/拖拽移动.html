@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			
+			
+			 #mask{
+				position: relative;
+				width: 400px;
+				height: 400px;
+				border: 1px solid gainsboro;
+				box-shadow: 5px 5px 10px gray;
+			}
+			#mask .masktop{
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 400px;
+				background: gray;
+				color: ghostwhite;
+			}
+			 #mask .masktop a{
+				text-decoration: none;
+				color: ghostwhite;
+				float: right;
+			}
+		</style>
+	</head>
+	<body>
+			<div id="mask">
+				<div class="masktop">注册信息（可拖拽）<a href="javascript:;">删除</a></div>
+			</div>
+		
+	</body>
+	<script>
+		var mask=document.getElementById("mask");
+		var masktop=mask.children[0];
+		masktop.onmousedown=function(event){
+			var event=event||window.event;
+			var x=event.clientX-mask.offsetLeft;
+			var y=event.clientY-mask.offsetTop;
+			//鼠标移动
+			document.onmousemove=function(event){
+				event=event||window.event;
+				var maskx=event.clientX-x;
+				var masky=event.clientY-y;
+				mask.style.left=maskx+"px";
+				mask.style.top=masky+"px";
+				//去掉在移动过程中选中的字体
+				window.getSelection?window.getSelection().removeAllRanges():document.selection.empty();
+			}
+			
+		}
+		document.onmouseup=function(){
+			document.onmousemove=function(){
+				
+			}
+		}
+	</script>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			#box{
+				width:200px ;
+				height:200px;
+				border: 1px solid hotpink;
+				margin: 100px;
+				position: relative;
+			}
+			img{
+				vertical-align: top;
+			}
+			#big{
+				position:relative;
+				
+			}
+			#big img{
+				width: 200px;
+				height: 200px;
+				border: 1px solid hotpink;
+			}
+			#mask{
+				display: none;
+				width:50px;
+				height: 50px;
+				background-color:rgba(200,200,200,0.4);
+				position: absolute;
+				top: 0px ;
+				left: 0;
+				cursor: move;
+			}
+			#samll{
+				width: 450px;
+				height: 450px;
+				
+				border: 1px solid hotpink;
+				position:absolute;
+				display: none;
+				overflow: hidden;
+			}
+			#samll img{
+				
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="big">
+				<img src="../img/01.jpg">
+				<div id="mask"></div>
+			</div>
+			<div id="samll">
+				<img src="../img/01big.jpg">
+			</div>
+		</div>
+	</body>
+	<script>
+		var box=document.getElementById("box");
+		var small=box.children[1];
+		var big=box.children[0];
+		var mask=big.children[1];
+		var img=small.children[0];
+		/*var samll=document.getElementById("samll");
+		var big=document.getElementById("big");
+		var mask=document.getElementById("mask");*/
+		box.onmousemove=function(){
+			mask.style.display="block";
+			samll.style.display="block";
+		}
+		box.onmouseout=function(){
+			mask.style.display="none";
+			samll.style.display="none";
+		}
+		var x=0;
+		var y=0;
+		document.onmousemove=function(event){
+			event=event || window.event;
+			x=event.clientX-box.offsetLeft-mask.offsetWidth/2;
+			y=event.clientY-box.offsetTop-mask.offsetHeight/2;
+			
+			if(x<=0){
+				x=0;
+			}else if(x>big.offsetWidth-mask.offsetWidth){
+				x=big.offsetWidth-mask.offsetWidth;
+			}
+			if(y<=0){
+				y=0;
+			}else if(y>big.offsetHeight-mask.offsetHeight){
+				y=big.offsetWidth-mask.offsetWidth;
+			}
+			mask.style.left=x+"px";
+			mask.style.top=y+"px";
+			img.style.left=-x*(samll.offsetWidth/big.offsetWidth)+"px";
+			img.style.top=-y*(samll.offsetHeight/big.offsetHeight)+"px";
+		}
+		
+	</script>
+</html>

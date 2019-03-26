@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			#box{
+				width: 500px;
+				height: 10px;
+				background-color: gray;
+				margin: 100px auto;
+				position: relative;
+			}
+			#mask{
+				height: 10px;
+				background-color: red;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			#bar{
+				width: 10px;
+				height: 20px;
+				background-color: red;
+				position: absolute;
+				top: -5px;
+				left: 0;
+				
+			}
+			#pp{
+				text-align: center;
+				line-height: 90px;
+				font-size: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="mask"></div>
+			<div id="bar"></div>
+			<p id="pp">已经走了：</p>
+		</div>
+	</body>
+	<script>
+		var box=document.getElementById("box");
+		var mask=box.children[0];
+		var bar=box.children[1];
+		var p=box.children[2];
+		var value=0;
+		bar.onmousedown=function(event){
+			event=event || window.event;
+//			value=event.clientX-this.offsetLeft;
+			document.onmousemove=function(event){
+				event=event || window.event;
+				value=event.clientX-box.offsetLeft-bar.offsetWidth/2;
+				var val=box.offsetWidth-bar.offsetWidth;
+				if(value<=0){
+					value=0
+				}else if(value>=val){
+					value=val;
+				}
+				mask.style.width=value+"px";
+				bar.style.left=value+"px";
+				pp.innerHTML="已经走了："+(value/val*100).toFixed(2)+"%";
+			}
+			
+			document.onmouseup=function(){
+					document.onmousemove=null;
+		}
+		}
+	</script>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+				list-style:none;
+			}
+			body{
+				background-color: black;
+			}
+			#box{
+				width: 700px;
+				height: 42px;
+				margin: 100px auto;
+				position: relative;
+				background: white url(../img/rss.png) no-repeat center right;
+			}
+			#box ul{
+				width: 600px;
+				position:relative;
+			}
+			#box ul li{
+				width:82px;
+				line-height:42px;
+				text-align: center;
+				float: left;
+			}
+			#mask{
+				width: 80px;
+				height: 42px;
+				position: absolute;
+				top: 0;
+				left:0;
+				background: url(../img/cloud.gif) no-repeat center center;
+			}
+			#box li.crr{
+				background-image:url(../img/cloud.gif) no-repeat center center;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<span id="mask">
+			</span>
+			<ul>
+				<li>首页</li>
+				<li>首页</li>
+				<li>首页</li>
+				<li>首页</li>
+				<li>首页</li>
+				<li>首页</li>
+				<li>首页</li>
+			</ul>
+		</div>
+	</body>
+	<script>
+		//var box=document.getElementById("box");
+		var lis=document.getElementsByTagName("li");
+		var mask=document.getElementById("mask");
+		var target=0;
+			var leader=0;
+			var num=0;
+		setInterval(function(event){
+			
+			leader=leader+(target-leader)/10;
+			for(var i=0;i<lis.length;i++) {
+				//num=this.offsetLeft
+				lis[i].onmousemove=function(){
+					target=this.offsetLeft;
+				}
+				lis[i].onclick=function(){
+					num=target;
+				}
+				lis[i].onmouseout=function(){
+					target=num;
+				}
+				mask.style.left=target+"px";
+			}
+			
+		},30);
+	</script>
+</html>
